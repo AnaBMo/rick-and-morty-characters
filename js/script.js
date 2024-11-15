@@ -15,7 +15,7 @@ const obtenerPersonajes = (pagina) => {
         })
         .then((data) => {
             mostrarPersonajes(data.results); // el nombre y la especie de cada personaje están en el json en results.
-            botonPagina(data.info); // la referencia a las páginas en el json está dentro de los corchetes de info.
+            actualizarPagina(data.info); // la referencia a las páginas en el json está en info.
         })
         .catch((error) => {
             console.error(error);
@@ -34,19 +34,39 @@ const mostrarPersonajes = (personaje) => {
     });
 }
 
+/* Función para cambiar de página */
+/* ******* no consigo dar con esto ******* */
+const actualizarPagina = (info) => {
+    if (info.prev == null){
+        prevPagBtn.disabled;
+    } else if (info.next == null) {
+        nextPagBtn.disabled;
+    } else {
+
+    }
+};
+
+/* el evento del botón debe estar integrado en la función.
+pag > 1, botón previo habilitado, cualquier cosa que no sea esta: deshabilitado
+    "ternario"
+pagActual > númTotalPag : botón next, deshabilitado
+*/
+
+/* 
+info.next: URL de la página siguiente, o null si no hay más páginas.
+info.prev: URL de la página anterior, o null si estás en la primera página.
+*/
+
 /* Página previa y página siguiente */
-let pagina = 0;
+let paginaActual = 1;
 prevPagBtn.addEventListener('click', () => {
-    if (pagina > 1) {
-        pagina--;
-        obtenerPersonajes(pagina);
+    if (paginaActual > 1) {
+        obtenerPersonajes(paginaActual - 1);
     }
 });
 
 nextPagBtn.addEventListener('click', () => {
-    pagina++;
-    obtenerPersonajes(pagina);
+    obtenerPersonajes(paginaActual + 1);
 });
 
-obtenerPersonajes(pagina); // mostrar personajes en la página principal
-
+obtenerPersonajes(paginaActual); // mostrar personajes en la página principal
