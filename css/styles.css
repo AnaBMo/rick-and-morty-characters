@@ -85,6 +85,21 @@ table {
   transition: .3s;
 }
 
+.disabled {
+  color: #61a7a7;
+  cursor: pointer;
+  background-color: rgb(100, 98, 98);
+}
+
+.boton.disabled:hover {
+  font-size: 16px; /* Tamaño original */
+  font-weight: normal; /* Sin cambios en el peso */
+  color: #61a7a7; /* Color definido para el estado desactivado */
+  cursor: not-allowed; /* No es clicable */
+  background-color: rgb(100, 98, 98); /* Mantén el color desactivado */
+  transition: none; /* Elimina la transición */
+}
+
 ul {  
   display: flex;
   flex-direction: row;
@@ -111,7 +126,7 @@ img {
 
 img:hover {
   border-radius: 60px;
-  width: 225px;
+  width: 200px;
   transition: .3s;
 }
 
@@ -131,10 +146,13 @@ h3 {
   font-size: 16px;
   color: #03b1c8;
   font-weight: bolder;
-  font-weight: bolder;
 }
 
 p {
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 14px;
+}
+
+p:hover, h3:hover {
+  font-size: 20px;
 }
